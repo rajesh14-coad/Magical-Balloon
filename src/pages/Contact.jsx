@@ -66,10 +66,10 @@ export default function Contact() {
   };
 
   return (
-    <div className="py-12 sm:py-20 relative">
+    <div className="py-12 sm:py-20 relative overflow-hidden">
       
       {/* Ambient Lighting Gradients (Strictly NO BLUE: Saffron & Green) */}
-      <div className="absolute top-12 left-1/3 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-r from-[#FF7722]/10 via-[#138808]/5 to-transparent blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-12 left-1/3 -translate-x-1/2 w-[700px] max-w-full h-[450px] bg-gradient-to-r from-[#FF7722]/10 via-[#138808]/5 to-transparent blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

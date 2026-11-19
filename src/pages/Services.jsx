@@ -195,8 +195,8 @@ export default function Services() {
     <div className="relative py-8 sm:py-16 overflow-hidden">
       
       {/* Ambient Lighting Gradients (Strictly NO BLUE: Indian Green & Saffron) */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#138808]/5 dark:bg-[#138808]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-[#FF7722]/5 dark:bg-[#FF7722]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 right-0 w-[500px] max-w-full h-[500px] bg-[#138808]/5 dark:bg-[#138808]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/3 left-0 w-[500px] max-w-full h-[500px] bg-[#FF7722]/5 dark:bg-[#FF7722]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
@@ -286,7 +286,7 @@ export default function Services() {
                       onClick={(e) => e.stopPropagation()}
                       className="hidden sm:inline-flex items-center gap-1 text-[#138808] font-bold hover:underline shrink-0"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 fill-current shrink-0" size={14} />
                       <span>Book</span>
                     </a>
                   </div>
@@ -398,7 +398,7 @@ export default function Services() {
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white active:scale-95 transition-all shadow-md shadow-[#25D366]/30"
                   >
-                    <WhatsAppIcon className="w-4.5 h-4.5 fill-current shrink-0" />
+                    <WhatsAppIcon className="w-4.5 h-4.5 fill-current shrink-0" size={18} />
                     <span>Book on WhatsApp</span>
                   </a>
 

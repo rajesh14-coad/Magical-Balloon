@@ -17,7 +17,7 @@ export default function Home() {
     <div className="relative overflow-hidden">
       
       {/* Ambient Lighting Gradients */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-[#138808]/10 via-[#FF7722]/10 to-[#138808]/10 blur-[130px] pointer-events-none -z-10" />
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[700px] max-w-full h-[350px] bg-gradient-to-r from-[#138808]/10 via-[#FF7722]/10 to-[#138808]/10 blur-[130px] pointer-events-none -z-10" />
 
       {/* ==================== FULL-WIDTH HERO BANNER SECTION ==================== */}
       <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-2 sm:pt-4 pb-2 sm:pb-4">

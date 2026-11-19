@@ -5,12 +5,14 @@ import React from 'react';
  * Features the authentic phone handset inside speech bubble.
  * Pixel-perfect vector paths matching the official brand guidelines.
  */
-export default function WhatsAppIcon({ className = "w-5 h-5", ...props }) {
+export default function WhatsAppIcon({ className = "w-5 h-5", size = 20, ...props }) {
   return (
     <svg 
       viewBox="0 0 24 24" 
+      width={size}
+      height={size}
       fill="currentColor" 
-      className={className} 
+      className={`inline-block shrink-0 ${className}`} 
       aria-hidden="true"
       {...props}
     >

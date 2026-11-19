@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-saffron: #FF7722;
+  --color-saffron-light: #FFA059;
+  --color-saffron-dark: #D45407;
+
+  --color-indian-green: #138808;
+  --color-indian-green-light: #22B814;
+  --color-indian-green-dark: #0B5A04;
+
+  --color-dark-bg: #0A0B0E;
+  --color-dark-surface: #12141A;
+}
+
+/* Base Body Styles */
+body {
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glassmorphism System - Light & Dark */
+.glass-header {
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .glass-header {
+  background-color: rgba(10, 11, 14, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+}
+
+.dark .glass-panel {
+  background-color: rgba(18, 20, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* Glass Inputs for Forms */
+.glass-input {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #18181b;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #138808;
+  box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.18);
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
+.dark .glass-input {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F4F4F5;
+}
+
+.dark .glass-input:focus {
+  border-color: #138808;
+  box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.25);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Tricolor Text Gradient */
+.gradient-tricolor-text {
+  background: linear-gradient(135deg, #138808 0%, #16A34A 35%, #FF7722 80%, #D45407 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tricolor Line */
+.tricolor-border-line {
+  background: linear-gradient(90deg, #138808 0%, #FFFFFF 50%, #FF7722 100%);
+}
+
+.dark .tricolor-border-line {
+  background: linear-gradient(90deg, #138808 0%, rgba(255, 255, 255, 0.8) 50%, #FF7722 100%);
+}
+
+/* Full Width Hero Banner Swiper Pagination (Indian Green & Saffron) */
+.hero-banner-swiper {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+}
+
+.hero-banner-swiper .swiper-pagination {
+  bottom: 24px !important;
+  z-index: 25;
+}
+
+.hero-banner-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 0.65;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 9999px;
+}
+
+.hero-banner-swiper .swiper-pagination-bullet-active {
+  background: #138808 !important;
+  opacity: 1 !important;
+  width: 32px !important;
+  border-radius: 6px;
+  box-shadow: 0 0 14px rgba(19, 136, 8, 0.8);
+}
+
+/* Custom Keyframe Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.01);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(19, 136, 8, 0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 160, 160, 0.3);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #138808;
+}

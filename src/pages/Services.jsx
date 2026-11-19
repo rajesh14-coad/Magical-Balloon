@@ -343,74 +343,75 @@ export default function Services() {
       {/* ==================== QUICK VIEW LIGHTBOX MODAL ==================== */}
       {activeModalItem && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto"
           onClick={() => setActiveModalItem(null)}
         >
           <div 
-            className="relative w-full max-w-md sm:max-w-lg bg-white dark:bg-[#12141a] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-white/10"
+            className="relative w-full max-w-sm sm:max-w-lg bg-white dark:bg-[#12141a] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-white/10 my-auto flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Close Button */}
             <button
               onClick={() => setActiveModalItem(null)}
-              className="absolute top-3 right-3 z-20 p-2 rounded-full bg-black/60 text-white hover:bg-black/90 transition-colors cursor-pointer"
+              className="absolute top-3 right-3 z-20 p-2 rounded-full bg-black/70 text-white hover:bg-black transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-4 h-4" />
             </button>
 
-            {/* Modal Image */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-zinc-950">
-              <img
-                src={activeModalItem.image}
-                alt={activeModalItem.title}
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute top-3 left-3 z-10">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md text-white bg-[#138808]/90">
-                  {activeModalItem.badge}
-                </span>
-              </div>
-            </div>
-
-            {/* Modal Details & Direct Booking Action */}
-            <div className="p-4 sm:p-6">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg sm:text-xl font-black text-zinc-950 dark:text-white tracking-tight">
-                  {activeModalItem.title}
-                </h3>
-                <span className="text-xs font-semibold text-[#FF7722]">
-                  {activeModalItem.tag}
-                </span>
+            {/* Scrollable Modal Content */}
+            <div className="overflow-y-auto overscroll-contain flex-1">
+              {/* Modal Image - responsive aspect so it never pushes buttons off-screen */}
+              <div className="relative aspect-[16/11] sm:aspect-[16/10] w-full overflow-hidden bg-zinc-950">
+                <img
+                  src={activeModalItem.image}
+                  alt={activeModalItem.title}
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md text-white bg-[#138808]/90">
+                    {activeModalItem.badge}
+                  </span>
+                </div>
               </div>
 
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed">
-                Full setup customized for your venue in Hyderabad. Includes metallic & chrome balloons, setup & timely teardown crew.
-              </p>
+              {/* Modal Details & Direct Booking Action */}
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center justify-between mb-1.5 gap-2">
+                  <h3 className="text-base sm:text-xl font-black text-zinc-950 dark:text-white tracking-tight truncate">
+                    {activeModalItem.title}
+                  </h3>
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#FF7722] shrink-0">
+                    {activeModalItem.tag}
+                  </span>
+                </div>
 
-              <div className="flex items-center gap-2.5">
-                <Button
-                  variant="primary"
-                  size="md"
-                  href={`https://wa.me/919509971603?text=${encodeURIComponent(`Hi Magical Balloon Decor, I want to book "${activeModalItem.title}" setup in Hyderabad.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  icon={WhatsAppIcon}
-                  className="flex-1 justify-center text-xs sm:text-sm"
-                >
-                  Book on WhatsApp
-                </Button>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">
+                  Full setup customized for your venue in Hyderabad. Includes metallic & chrome balloons, setup & timely teardown crew.
+                </p>
 
-                <Button
-                  variant="outline"
-                  size="md"
-                  href={`tel:${BUSINESS_INFO.phoneRaw}`}
-                  icon={Phone}
-                  className="shrink-0 text-xs sm:text-sm"
-                >
-                  Call
-                </Button>
+                {/* WhatsApp & Call Action Buttons */}
+                <div className="flex items-center gap-2 pt-1">
+                  <a
+                    href={`https://wa.me/919509971603?text=${encodeURIComponent(`Hi Magical Balloon Decor, I want to book "${activeModalItem.title}" setup in Hyderabad.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white active:scale-95 transition-all shadow-md shadow-[#25D366]/30"
+                  >
+                    <WhatsAppIcon className="w-4.5 h-4.5 fill-current shrink-0" />
+                    <span>Book on WhatsApp</span>
+                  </a>
+
+                  <a
+                    href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                    className="flex items-center justify-center gap-1.5 py-3 px-3.5 rounded-xl font-bold text-xs sm:text-sm border border-zinc-200 dark:border-white/15 bg-zinc-100 hover:bg-zinc-200 dark:bg-white/10 dark:text-white active:scale-95 transition-all shrink-0"
+                  >
+                    <Phone className="w-4 h-4 text-[#FF7722] fill-current" />
+                    <span>Call</span>
+                  </a>
+                </div>
               </div>
+
             </div>
 
           </div>

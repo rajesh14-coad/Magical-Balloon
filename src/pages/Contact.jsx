@@ -108,16 +108,17 @@ export default function Contact() {
                 </p>
               </div>
 
-              {/* Large Pulsing WhatsApp Button (High Visibility) */}
+              {/* Large Pulsing WhatsApp Button (High Visibility & 100% Responsive) */}
               <div className="pt-2">
                 <a
                   href="https://wa.me/919509971603"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#138808] to-[#1cb80e] hover:from-[#117a07] hover:to-[#179e0c] text-white font-bold text-base flex items-center justify-center gap-3 shadow-xl shadow-[#138808]/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 animate-pulse-glow"
+                  className="w-full py-3.5 sm:py-4 px-3 sm:px-6 rounded-xl sm:rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-3 shadow-xl shadow-[#25D366]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
                 >
-                  <WhatsAppIcon className="w-6 h-6 fill-current shrink-0" />
-                  <span>Chat on WhatsApp (+91 9509971603)</span>
+                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" />
+                  <span className="whitespace-nowrap">Chat on WhatsApp</span>
+                  <span className="hidden sm:inline text-xs opacity-90 font-medium">(+91 9509971603)</span>
                 </a>
               </div>
 

@@ -38,7 +38,7 @@ export default function App() {
             <Header />
 
             {/* One-Page Stacking with Safe-area padding for mobile bottom nav */}
-            <main className="flex-grow pb-24 md:pb-0 space-y-12 sm:space-y-20">
+            <main className="flex-grow pb-28 sm:pb-32 md:pb-0 space-y-12 sm:space-y-20">
               <section id="home" className="scroll-mt-20">
                 <Home />
               </section>

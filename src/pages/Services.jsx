@@ -222,15 +222,15 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-14">
+        {/* Mobile App-Style Touch-Scrollable Filter Tabs */}
+        <div className="flex overflow-x-auto no-scrollbar py-2 px-1 gap-2 sm:gap-3 sm:flex-wrap sm:justify-center mb-8 sm:mb-14">
           {filterTabs.map((tab) => {
             const isActive = activeCategory === tab.value;
             return (
               <button
                 key={tab.value}
                 onClick={() => setActiveCategory(tab.value)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer shrink-0 active:scale-95 ${
                   isActive
                     ? 'bg-gradient-to-r from-[#138808] to-[#1cb80e] text-white shadow-md shadow-[#138808]/25 scale-105'
                     : 'glass-panel text-zinc-700 dark:text-zinc-300 hover:text-[#138808] hover:border-[#138808]/40'

@@ -24,13 +24,12 @@ import babyshowerImg from '../assets/babyshower-balloon.jpg';
 import corporateImg from '../assets/corporate-balloon.jpg';
 
 /**
- * Full-Width Hero Home Page
+ * Mobile-First Native App-Style Home Page
  * UI/UX Enhancements:
- * - Expansive Full-Width Hero Banner Slider (Text clutter removed as requested)
- * - Trust Bar with reviews, coverage & on-time guarantees
- * - 'Our Magical Services' 4-Card Section with 'View All' CTA
- * - 3-Column Highlights with bespoke Lucide icons
- * - Indian Green (#138808) primary + Saffron (#FF7722) accents
+ * - Full-Width Hero Banner Slider with touch swipe
+ * - App-style 2x2 Quick Trust Bar
+ * - Mobile-friendly featured services cards
+ * - Indian Green (#138808) primary CTA buttons
  * - STRICTLY ZERO BLUE
  */
 export default function Home() {
@@ -105,53 +104,53 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden">
       
-      {/* Ambient Lighting Gradients (Strictly NO BLUE: Indian Green & Saffron) */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-r from-[#138808]/10 via-[#FF7722]/10 to-[#138808]/10 blur-[150px] pointer-events-none -z-10" />
+      {/* Ambient Lighting Gradients */}
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-[#138808]/10 via-[#FF7722]/10 to-[#138808]/10 blur-[130px] pointer-events-none -z-10" />
 
       {/* ==================== 1. FULL-WIDTH HERO BANNER SECTION ==================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-10 sm:pb-16">
         <HeroSlider />
 
-        {/* Quick Trust Bar under the banner */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* App-like Quick Trust Grid under the banner */}
+        <div className="mt-4 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
           
-          <div className="p-4 rounded-2xl glass-panel flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
-              <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
+          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 fill-amber-500" />
             </div>
             <div>
-              <span className="text-sm font-bold text-zinc-900 dark:text-white block">4.9 / 5 Rating</span>
-              <span className="text-xs text-zinc-500">300+ Verified Reviews</span>
+              <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white block">4.9 / 5 Rating</span>
+              <span className="text-[10px] sm:text-xs text-zinc-500">300+ Reviews</span>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl glass-panel flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#138808]/15 flex items-center justify-center shrink-0">
-              <CheckCircle2 className="w-5 h-5 text-[#138808]" />
+          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#138808]/15 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#138808]" />
             </div>
             <div>
-              <span className="text-sm font-bold text-zinc-900 dark:text-white block">100% On-Time</span>
-              <span className="text-xs text-zinc-500">Punctual Hyderabad Crew</span>
+              <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white block">100% On-Time</span>
+              <span className="text-[10px] sm:text-xs text-zinc-500">Punctual Crew</span>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl glass-panel flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#FF7722]/15 flex items-center justify-center shrink-0">
-              <MapPin className="w-5 h-5 text-[#FF7722]" />
+          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#FF7722]/15 flex items-center justify-center shrink-0">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF7722]" />
             </div>
             <div>
-              <span className="text-sm font-bold text-zinc-900 dark:text-white block">Hyderabad Wide</span>
-              <span className="text-xs text-zinc-500">Balanagar, Hitec City, etc.</span>
+              <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white block">Hyderabad Wide</span>
+              <span className="text-[10px] sm:text-xs text-zinc-500">Balanagar & Beyond</span>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl glass-panel flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#138808]/15 flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5 text-[#138808]" />
+          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#138808]/15 flex items-center justify-center shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#138808]" />
             </div>
             <div>
-              <span className="text-sm font-bold text-zinc-900 dark:text-white block">Premium Finish</span>
-              <span className="text-xs text-zinc-500">100% Custom Themes</span>
+              <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white block">Custom Themes</span>
+              <span className="text-[10px] sm:text-xs text-zinc-500">Bespoke Styling</span>
             </div>
           </div>
 
@@ -159,26 +158,26 @@ export default function Home() {
       </section>
 
       {/* ==================== 2. FEATURED SERVICES SECTION ==================== */}
-      <section className="py-16 sm:py-24 relative bg-zinc-50/60 dark:bg-zinc-950/40 border-y border-zinc-200/60 dark:border-white/[0.06] transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 relative bg-zinc-50/60 dark:bg-zinc-950/40 border-y border-zinc-200/60 dark:border-white/[0.06] transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-white/[0.06] border border-zinc-200/80 dark:border-white/10 text-xs font-bold uppercase tracking-wider text-[#138808] dark:text-emerald-400 shadow-sm mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-white/[0.06] border border-zinc-200/80 dark:border-white/10 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#138808] dark:text-emerald-400 shadow-sm mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Tailored Celebrations</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black text-zinc-950 dark:text-white tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white tracking-tight mb-2.5 sm:mb-4">
               Our <span className="text-[#138808]">Magical</span> Services
             </h2>
 
-            <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
-              Explore our most requested balloon decoration setups in Hyderabad, designed to make your birthdays, anniversaries, and grand events truly unforgettable.
+            <p className="text-xs sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xl mx-auto font-normal">
+              Explore Hyderabad's most popular balloon decoration setups, styled directly at your venue.
             </p>
           </div>
 
-          {/* 4 Featured Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {featuredServices.map((service) => {
               const whatsappUrl = `https://wa.me/919509971603?text=${encodeURIComponent(service.whatsappMsg)}`;
               
@@ -191,15 +190,15 @@ export default function Home() {
                   imageAlt={service.title}
                   badge={service.badge}
                   accent={service.accent}
-                  padding="p-6"
-                  className="flex flex-col justify-between group"
+                  padding="p-4 sm:p-6"
+                  className="flex flex-col justify-between group rounded-2xl"
                 >
                   <div>
-                    <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 font-normal">
+                    <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 sm:mb-6 font-normal">
                       {service.description}
                     </p>
 
-                    <div className="space-y-2 mb-6">
+                    <div className="space-y-1.5 sm:space-y-2 mb-5 sm:mb-6">
                       {service.features.map((feat, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs text-zinc-700 dark:text-zinc-300 font-medium">
                           <Check className="w-3.5 h-3.5 text-[#138808] shrink-0 stroke-[2.5]" />
@@ -209,7 +208,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-zinc-200/60 dark:border-white/[0.08] flex items-center justify-between gap-2">
+                  <div className="pt-3.5 border-t border-zinc-200/60 dark:border-white/[0.08] flex items-center justify-between gap-2">
                     <span className="text-[11px] font-medium text-zinc-500">
                       Hyderabad Wide
                     </span>
@@ -220,7 +219,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       icon={MessageCircle}
-                      className="shrink-0"
+                      className="shrink-0 active:scale-95 text-xs py-2 px-3.5"
                     >
                       Enquire
                     </Button>
@@ -231,13 +230,13 @@ export default function Home() {
           </div>
 
           {/* View All Services CTA */}
-          <div className="mt-14 text-center">
+          <div className="mt-8 sm:mt-14 text-center">
             <Link to="/services">
               <Button
                 variant="outline"
-                size="lg"
+                size="md"
                 icon={ArrowRight}
-                className="px-8 shadow-sm hover:border-[#138808] hover:text-[#138808]"
+                className="w-full sm:w-auto px-6 sm:px-8 shadow-sm hover:border-[#138808] hover:text-[#138808] text-xs sm:text-sm"
               >
                 View All 8+ Decoration Packages
               </Button>
@@ -248,9 +247,9 @@ export default function Home() {
       </section>
 
       {/* ==================== 3. HIGHLIGHTS SECTION ==================== */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#FF7722] block mb-2">
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-14">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#FF7722] block mb-1.5">
             Why Choose Magical Balloon
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
@@ -258,35 +257,35 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
           {highlights.map((item, idx) => {
             const Icon = item.icon;
             return (
               <GlassCard
                 key={idx}
                 accent={item.accent}
-                padding="p-8"
-                className="flex flex-col items-start justify-between text-left group"
+                padding="p-5 sm:p-8"
+                className="flex flex-col items-start justify-between text-left group rounded-2xl"
               >
                 <div>
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-110 ${
                     item.accent === 'green'
                       ? 'bg-[#138808]/15 text-[#138808]'
                       : 'bg-[#FF7722]/15 text-[#FF7722]'
                   }`}>
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2.5">
+                  <h3 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-white mb-1.5 sm:mb-2.5">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-zinc-200/50 dark:border-white/[0.06] w-full flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-zinc-200/50 dark:border-white/[0.06] w-full flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
                   <span>Guaranteed Setup Quality</span>
                   <span className="text-[#138808] group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -297,19 +296,19 @@ export default function Home() {
       </section>
 
       {/* ==================== 4. STATS COUNTER ==================== */}
-      <section className="pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <section className="pb-12 sm:pb-20 max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
           {STATS.map((stat, idx) => (
             <GlassCard
               key={stat.label}
               accent={idx % 2 === 0 ? "green" : "saffron"}
-              padding="p-6"
-              className="text-center"
+              padding="p-4 sm:p-6"
+              className="text-center rounded-2xl"
             >
-              <div className="text-3xl sm:text-5xl font-black text-zinc-950 dark:text-white mb-2 tracking-tight">
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white mb-1 tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+              <div className="text-[10px] sm:text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                 {stat.label}
               </div>
             </GlassCard>

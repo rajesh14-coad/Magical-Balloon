@@ -15,30 +15,37 @@
   --color-dark-surface: #12141A;
 }
 
+/* Mobile Native App Touch Optimization */
+* {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 /* Base Body Styles */
 body {
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Glassmorphism System - Light & Dark */
 .glass-header {
-  background-color: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .dark .glass-header {
-  background-color: rgba(10, 11, 14, 0.78);
+  background-color: rgba(10, 11, 14, 0.85);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -46,14 +53,30 @@ body {
 }
 
 .dark .glass-panel {
-  background-color: rgba(18, 20, 26, 0.7);
+  background-color: rgba(18, 20, 26, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5);
 }
 
+/* Native App-like Bottom Navigation Dock */
+.glass-bottom-nav {
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.08);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 8px);
+}
+
+.dark .glass-bottom-nav {
+  background-color: rgba(12, 14, 18, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.6);
+}
+
 /* Glass Inputs for Forms */
 .glass-input {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.12);
   color: #18181b;
   backdrop-filter: blur(8px);
@@ -65,11 +88,11 @@ body {
   outline: none;
   border-color: #138808;
   box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.18);
-  background-color: rgba(255, 255, 255, 0.98);
+  background-color: #ffffff;
 }
 
 .dark .glass-input {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #F4F4F5;
 }
@@ -77,7 +100,7 @@ body {
 .dark .glass-input:focus {
   border-color: #138808;
   box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.25);
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.09);
 }
 
 /* Tricolor Text Gradient */
@@ -96,24 +119,23 @@ body {
   background: linear-gradient(90deg, #138808 0%, rgba(255, 255, 255, 0.8) 50%, #FF7722 100%);
 }
 
-/* Full Width Hero Banner Swiper Pagination (Indian Green & Saffron) */
+/* Full Width Hero Banner Swiper Pagination */
 .hero-banner-swiper {
   width: 100%;
   height: 100%;
-  border-radius: 1.5rem;
 }
 
 .hero-banner-swiper .swiper-pagination {
-  bottom: 24px !important;
+  bottom: 20px !important;
   z-index: 25;
 }
 
 .hero-banner-swiper .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.7);
   opacity: 0.65;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px !important;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
 }
@@ -121,9 +143,18 @@ body {
 .hero-banner-swiper .swiper-pagination-bullet-active {
   background: #138808 !important;
   opacity: 1 !important;
-  width: 32px !important;
+  width: 26px !important;
   border-radius: 6px;
-  box-shadow: 0 0 14px rgba(19, 136, 8, 0.8);
+  box-shadow: 0 0 12px rgba(19, 136, 8, 0.8);
+}
+
+/* Hide scrollbars for app-like horizontal touch lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Custom Keyframe Animations */
@@ -148,7 +179,7 @@ body {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -158,10 +189,10 @@ body {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.4);
+    box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.45);
   }
   50% {
-    box-shadow: 0 0 0 14px rgba(19, 136, 8, 0);
+    box-shadow: 0 0 0 12px rgba(19, 136, 8, 0);
   }
 }
 
@@ -174,14 +205,14 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-pulse-glow {
   animation: pulseGlow 2.5s infinite;
 }
 
-/* Custom Scrollbar */
+/* Custom Desktop Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }

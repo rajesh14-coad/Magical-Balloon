@@ -156,18 +156,18 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        {/* Mobile App-Style Touch-Scrollable Filter Pills */}
+        <div className="flex overflow-x-auto no-scrollbar py-2 px-1 gap-2 sm:gap-3 sm:flex-wrap sm:justify-center mb-8 sm:mb-12">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat.value;
             return (
               <button
                 key={cat.value}
                 onClick={() => setSelectedCategory(cat.value)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer shrink-0 active:scale-95 ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#FF7722] to-[#FFA059] text-white shadow-md shadow-[#FF7722]/20 scale-105'
-                    : 'glass-panel text-zinc-700 dark:text-zinc-300 hover:text-[#FF7722] hover:border-[#FF7722]/40'
+                    ? 'bg-gradient-to-r from-[#138808] to-[#1cb80e] text-white shadow-md shadow-[#138808]/25 scale-105'
+                    : 'glass-panel text-zinc-700 dark:text-zinc-300 hover:text-[#138808] hover:border-[#138808]/40'
                 }`}
               >
                 {cat.label}
@@ -176,8 +176,8 @@ export default function Gallery() {
           })}
         </div>
 
-        {/* Responsive Masonry / Varied Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 2-Column Mobile Feed / 4-Column Desktop Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {filteredItems.map((item) => {
             const whatsappMsg = `Hi Magical Balloon Decoration, I saw "${item.title}" in your gallery and would like to enquire about its pricing and setup in Hyderabad.`;
             const whatsappUrl = `https://wa.me/919509971603?text=${encodeURIComponent(whatsappMsg)}`;

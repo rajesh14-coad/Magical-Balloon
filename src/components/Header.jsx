@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
 import { Sun, Moon, MessageCircle, Menu, X, Sparkles, Phone } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS } from '../utils/constants';
 import { useTheme } from '../utils/theme';
+import { useNavigation } from '../utils/navigation';
 import Button from './Button';
 
 /**
- * Mobile-First Sticky Glassmorphic Header Component
- * Design:
- * - Height: h-16 on mobile (native app bar height), h-20 on desktop
- * - Left: Logo with Indian Tricolor Accent
- * - Center: Desktop nav links with animated underline
- * - Right: Direct 1-tap Call button on mobile, Theme Toggle, WhatsApp CTA
- * - Responsive app-drawer for mobile
+ * Mobile-First Sticky Header for One-Page Smooth Scroll SPA
+ * Features:
+ * - Precision smooth scroll to #home, #services, #gallery, #contact
+ * - Live active tab indicator matching current scroll position
+ * - Direct 1-tap call button on mobile
  * - STRICTLY ZERO BLUE
  */
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { activeSection, scrollToSection } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (id) => {
+    scrollToSection(id);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full glass-header transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Left: Brand Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none"
+          {/* Left: Brand Logo (Scrolls to top/home) */}
+          <button
+            onClick={() => handleNavClick('home')}
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none text-left cursor-pointer"
             aria-label="Magical Balloon Decoration Home"
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#138808] via-white to-[#FF7722] p-[1.5px] shadow-sm group-hover:scale-105 transition-all duration-300">
@@ -44,27 +48,29 @@ export default function Header() {
                 Hyderabad • Decor
               </span>
             </div>
-          </Link>
+          </button>
 
-          {/* Center: Desktop Navigation Links */}
+          {/* Center: Desktop Navigation Links with Live Scrollspy */}
           <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
-            {NAV_LINKS.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  `relative py-1 text-sm font-medium tracking-wide transition-colors duration-200 ${
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.id;
+
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`relative py-1 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
                     isActive
                       ? 'text-[#138808] font-bold'
                       : 'text-zinc-700 hover:text-[#138808] dark:text-zinc-300 dark:hover:text-[#22B814]'
-                  } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-[#138808] after:to-[#FF7722] after:transition-all after:duration-300 ${
+                  } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2.5px] after:bg-gradient-to-r after:from-[#138808] after:to-[#FF7722] after:transition-all after:duration-300 ${
                     isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+                  }`}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Right Desktop Controls */}
@@ -99,8 +105,6 @@ export default function Header() {
 
           {/* Right Mobile Controls: Direct 1-Tap Call + Theme Toggle + Menu */}
           <div className="flex items-center gap-1.5 sm:hidden">
-            
-            {/* Quick 1-Tap Phone Call (Essential for Local Services) */}
             <a
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
               aria-label="Call Now"
@@ -109,12 +113,11 @@ export default function Header() {
               <Phone className="w-4 h-4" />
             </a>
 
-            {/* Theme Toggle */}
             <button
               type="button"
               onClick={toggleTheme}
               aria-label="Toggle Theme"
-              className="p-2 rounded-xl border border-zinc-200/80 bg-white/80 text-zinc-700 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-300 active:scale-90 transition-transform"
+              className="p-2 rounded-xl border border-zinc-200/80 bg-white/80 text-zinc-700 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-300 active:scale-90 transition-transform cursor-pointer"
             >
               {theme === 'dark' ? (
                 <Sun className="w-4 h-4 text-amber-400" />
@@ -123,11 +126,10 @@ export default function Header() {
               )}
             </button>
 
-            {/* Menu Hamburger */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl border border-zinc-200/80 bg-white/80 text-zinc-700 active:scale-90 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-300 transition-colors"
+              className="p-2 rounded-xl border border-zinc-200/80 bg-white/80 text-zinc-700 active:scale-90 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-300 transition-colors cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -141,22 +143,23 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="sm:hidden glass-panel border-t border-zinc-200/60 dark:border-white/10 px-4 pt-3 pb-5 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-1.5" aria-label="Mobile Navigation">
-            {NAV_LINKS.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `px-3.5 py-2 rounded-xl text-sm font-medium transition-colors ${
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.id;
+
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors text-left cursor-pointer ${
                     isActive
                       ? 'bg-[#138808]/15 text-[#138808] font-bold'
                       : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-white/5'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+                  }`}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </nav>
 
           <div className="pt-2 border-t border-zinc-200/60 dark:border-white/10 flex flex-col gap-2">

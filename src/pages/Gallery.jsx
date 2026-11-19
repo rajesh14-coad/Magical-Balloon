@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Sparkles, 
   Eye, 
@@ -10,6 +9,7 @@ import {
   Filter 
 } from 'lucide-react';
 import { BUSINESS_INFO } from '../utils/constants';
+import { useNavigation } from '../utils/navigation';
 import Button from '../components/Button';
 import GlassCard from '../components/GlassCard';
 
@@ -34,6 +34,7 @@ import galleryCelebration from '../assets/gallery-celebration.jpg';
  * - STRICTLY ZERO BLUE
  */
 export default function Gallery() {
+  const { scrollToSection } = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalItem, setActiveModalItem] = useState(null);
 
@@ -347,15 +348,14 @@ export default function Gallery() {
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link to="/contact">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    icon={ArrowRight}
-                  >
-                    Contact Us Today
-                  </Button>
-                </Link>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  icon={ArrowRight}
+                  onClick={() => scrollToSection('contact')}
+                >
+                  Contact Us Today
+                </Button>
 
                 <Button
                   variant="outline"

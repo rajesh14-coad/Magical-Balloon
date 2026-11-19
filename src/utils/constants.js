@@ -2,6 +2,7 @@
  * Global Configuration and Constants
  * Business: Magical Balloon Decoration Hyderabad
  * Theme Rules: Light Mode by default + Dark Mode toggle + Glassmorphism + Saffron/White/Green Accents (STRICTLY NO BLUE)
+ * One-Page SPA Scroll Structure
  */
 
 export const BUSINESS_INFO = {
@@ -30,10 +31,9 @@ export const BUSINESS_INFO = {
 };
 
 export const NAV_LINKS = [
-  { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Gallery", path: "/gallery" },
-  { label: "Contact", path: "/contact" }
+  { label: "Home", id: "home", href: "#home" },
+  { label: "Services & Gallery", id: "services", href: "#services" },
+  { label: "Contact", id: "contact", href: "#contact" }
 ];
 
 export const SERVICE_CATEGORIES = [
@@ -75,8 +75,8 @@ export const THEME_CONFIG = {
   supportsDark: true,
   allowsBlue: false,
   accents: {
+    green: "#138808",
     saffron: "#FF7722",
-    white: "#FFFFFF",
-    green: "#138808"
+    white: "#FFFFFF"
   }
 };

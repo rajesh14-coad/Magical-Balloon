@@ -2,238 +2,229 @@ import React, { useState } from 'react';
 import { 
   Sparkles, 
   MessageCircle, 
-  Check, 
-  ArrowRight, 
-  Gift, 
-  Heart, 
-  Baby, 
-  Briefcase, 
-  Flower2, 
-  Car, 
-  Home, 
-  Layers 
+  Phone, 
+  Eye, 
+  X, 
+  CheckCircle2, 
+  ArrowRight 
 } from 'lucide-react';
 import { BUSINESS_INFO } from '../utils/constants';
-import GlassCard from '../components/GlassCard';
 import Button from '../components/Button';
 
-// 8 High-definition balloon decoration images (Zero Blue)
-import birthdayImg from '../assets/birthday-balloon.jpg';
-import anniversaryImg from '../assets/anniversary-balloon.jpg';
-import haldiImg from '../assets/haldi-balloon.jpg';
-import babyshowerImg from '../assets/babyshower-balloon.jpg';
-import carbootImg from '../assets/carboot-balloon.jpg';
-import roomDecorImg from '../assets/room-decor-balloon.jpg';
-import corporateImg from '../assets/corporate-balloon.jpg';
-import stageBackdropImg from '../assets/hero-balloon.jpg';
+// Newly added Pexels images + Curated Balloon Setups (Strictly Zero Blue)
+import imgBirthday1 from '../assets/pexels-nikitaxnikitin-14774949.jpg';
+import imgBirthday2 from '../assets/pexels-pavel-danilyuk-7180850.jpg';
+import imgBirthday3 from '../assets/pexels-mlkbnl-10651684.jpg';
+import imgBirthday4 from '../assets/pexels-hannaauramenka-8652621.jpg';
+import imgRomantic1 from '../assets/anniversary-balloon.jpg';
+import imgRomantic2 from '../assets/pexels-derya-59965512-36231146.jpg';
+import imgBaby1 from '../assets/babyshower-balloon.jpg';
+import imgBaby2 from '../assets/pexels-planka-22690730.jpg';
+import imgHaldi1 from '../assets/haldi-balloon.jpg';
+import imgHaldi2 from '../assets/pexels-planka-20598637.jpg';
+import imgStage1 from '../assets/pexels-rebornfilmes-36704177.jpg';
+import imgStage2 from '../assets/pexels-mesut-yalcin-1233429888-31779567.jpg';
+import imgStage3 from '../assets/pexels-basungavisual-37382220.jpg';
+import imgStage4 from '../assets/hero-balloon.jpg';
 
 /**
- * Production-Ready Expanded Services Page
+ * Clean & Minimalist Decoration Showcase (RaharDecors Style)
  * Features:
- * - 8 Comprehensive Decoration Categories
- * - Responsive 3-Column Desktop Grid (1 col mobile, 2 col tablet, 3 col desktop)
- * - Green (#138808) primary interactive styling & Saffron (#FF7722) accents
- * - Pre-filled WhatsApp direct booking enquiry per package
+ * - 4-Column Responsive Grid (2-col on mobile, 4-col on desktop)
+ * - Minimal text per card (clean title + tags only, zero clutter)
+ * - Aspect 4:5 portrait images with smooth hover "Quick View"
+ * - Instant Frosted Quick View Modal with 1-click WhatsApp booking
  * - STRICTLY ZERO BLUE
  */
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [activeModalItem, setActiveModalItem] = useState(null);
 
-  const allServices = [
+  const allItems = [
+    // --- Birthday Decorations ---
     {
-      id: "birthdays",
-      title: "Magical Birthday Decors",
-      categoryGroup: "family",
-      badge: "Bestseller",
-      accent: "saffron",
-      icon: Gift,
-      image: birthdayImg,
-      subtitle: "Kids, Milestones & Adult Celebrations",
-      description: "Organic circular balloon arches, customized neon age/name boards, warm spotlights, and dessert table styling in warm saffron, gold & ivory.",
-      features: [
-        "Organic circular balloon ring or archway",
-        "Personalized neon 'Happy Birthday' board",
-        "Dessert & cake table ambient spotlighting",
-        "Full setup & prompt teardown crew"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Magical Birthday Decors package in Hyderabad."
+      id: "bday-1",
+      title: "Premium Birthday Decor",
+      category: "birthdays",
+      image: imgBirthday1,
+      badge: "Trending",
+      tag: "Milestones & Kids",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Premium Birthday Decor' in Hyderabad."
     },
     {
-      id: "anniversaries",
-      title: "Romantic Anniversary Cabanas",
-      categoryGroup: "couples",
+      id: "bday-2",
+      title: "Luxury Birthday Setup",
+      category: "birthdays",
+      image: imgBirthday2,
+      badge: "Luxury Ring",
+      tag: "Grand Arch & Lights",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Luxury Birthday Setup' in Hyderabad."
+    },
+    {
+      id: "bday-3",
+      title: "Elegant Home Birthday",
+      category: "birthdays",
+      image: imgBirthday3,
+      badge: "Home Setup",
+      tag: "Warm Gold & Ivory",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Elegant Home Birthday' in Hyderabad."
+    },
+    {
+      id: "bday-4",
+      title: "Natural Style Birthday",
+      category: "birthdays",
+      image: imgBirthday4,
+      badge: "Pastel Chic",
+      tag: "Organic Garland",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Natural Style Birthday' in Hyderabad."
+    },
+
+    // --- Romantic & Anniversary ---
+    {
+      id: "rom-1",
+      title: "Romantic Canopy Cabana",
+      category: "couples",
+      image: imgRomantic1,
       badge: "Couples Choice",
-      accent: "green",
-      icon: Heart,
-      image: anniversaryImg,
-      subtitle: "Cabana Canopies, Proposals & Surprises",
-      description: "Fairytale chiffon canopy setups, glossy ruby red & pearl white balloons, fairy light curtains, and aromatic LED candles for romantic milestones.",
-      features: [
-        "Luxurious white chiffon cabana tent",
-        "Ruby red, pearl white & silver balloons",
-        "Twinkling LED fairy lights & candle pathway",
-        "Customized anniversary name cutout"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Romantic Anniversary Cabana setup in Hyderabad."
+      tag: "Candlelight & Canopies",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Romantic Canopy Cabana' in Hyderabad."
     },
     {
-      id: "haldi-mehendi",
-      title: "Haldi & Mehendi Setup",
-      categoryGroup: "traditional",
-      badge: "Traditional Special",
-      accent: "saffron",
-      icon: Flower2,
-      image: haldiImg,
-      subtitle: "Marigold, Saffron & Emerald Themes",
-      description: "Festive traditional wedding celebration setups blending vibrant yellow, gold, and green balloons with marigold florals, brass urlis, and cultural drapes.",
-      features: [
-        "Yellow, gold & leaf green organic arch",
-        "Marigold floral strings & hanging tassels",
-        "Traditional seating backdrop & drapes",
-        "Waterproof on-site setup for outdoor lawns"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Haldi & Mehendi Balloon & Floral setup in Hyderabad."
-    },
-    {
-      id: "baby-showers",
-      title: "Welcome Baby Decor",
-      categoryGroup: "family",
-      badge: "Trending Decor",
-      accent: "green",
-      icon: Baby,
-      image: babyshowerImg,
-      subtitle: "Baby Shower & Cradle Ceremony",
-      description: "Soothing pastel sage green, soft gold, and warm ivory balloon garlands with adorable teddy bear cutouts, cloud props, and customized welcome boards.",
-      features: [
-        "Pastel organic balloon backdrop arch",
-        "Teddy bear & cloud thematic cutouts",
-        "Welcome baby custom easel board",
-        "Non-toxic, premium biodegradable balloons"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Welcome Baby / Baby Shower Decor in Hyderabad."
-    },
-    {
-      id: "car-boot",
-      title: "Car Boot Surprises",
-      categoryGroup: "couples",
+      id: "rom-2",
+      title: "Intimate Room Surprise",
+      category: "couples",
+      image: imgRomantic2,
       badge: "Midnight Surprise",
-      accent: "saffron",
-      icon: Car,
-      image: carbootImg,
-      subtitle: "Mobile Birthday & Anniversary Surprises",
-      description: "Discreet and high-impact car trunk decoration featuring fairy lights, helium heart balloons, photo clips, and personalized banner surprises.",
-      features: [
-        "SUV / Sedan trunk organic balloon styling",
-        "Battery-operated twinkling fairy lights",
-        "Hanging polaroid photo strings & bunting",
-        "Discreet setup anywhere in Hyderabad"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Car Boot Surprise decoration in Hyderabad."
+      tag: "Helium & Fairy Lights",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Intimate Room Surprise' in Hyderabad."
+    },
+
+    // --- Kids & Baby Shower ---
+    {
+      id: "baby-1",
+      title: "Welcome Baby & Baby Shower",
+      category: "kids",
+      image: imgBaby1,
+      badge: "Baby Special",
+      tag: "Sage & Ivory Pastel",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Welcome Baby & Baby Shower' in Hyderabad."
     },
     {
-      id: "room-decor",
-      title: "Romantic Room Decoration",
-      categoryGroup: "couples",
-      badge: "Intimate Decor",
-      accent: "green",
-      icon: Home,
-      image: roomDecorImg,
-      subtitle: "Bedrooms, Hotel Rooms & Suites",
-      description: "Surprise room transformations with ceiling floating helium balloons with curling ribbons, floor balloons, LED candles, and rose petal arrangements.",
-      features: [
-        "Ceiling floating helium balloons with ribbons",
-        "LED flame candles & rose petal decor",
-        "Foil heart balloons & personalized message",
-        "Setup completed in 60-90 minutes"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Romantic Room Decoration in Hyderabad."
+      id: "baby-2",
+      title: "Botanical Pastel Garland",
+      category: "kids",
+      image: imgBaby2,
+      badge: "Trending Pastel",
+      tag: "Organic Eucalyptus Style",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Botanical Pastel Garland' in Hyderabad."
+    },
+
+    // --- Haldi & Traditional ---
+    {
+      id: "haldi-1",
+      title: "Traditional Haldi Mehendi",
+      category: "traditional",
+      image: imgHaldi1,
+      badge: "Marigold Special",
+      tag: "Yellow & Green Drapes",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Traditional Haldi Mehendi' in Hyderabad."
     },
     {
-      id: "corporate",
-      title: "Corporate & Grand Openings",
-      categoryGroup: "commercial",
+      id: "haldi-2",
+      title: "Festive Wedding Stage",
+      category: "traditional",
+      image: imgHaldi2,
+      badge: "Traditional Luxe",
+      tag: "Floral & Balloon Mix",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Festive Wedding Stage' in Hyderabad."
+    },
+
+    // --- Grand Stages & Corporate ---
+    {
+      id: "stage-1",
+      title: "Grand Ring Stage Backdrop",
+      category: "stages",
+      image: imgStage1,
+      badge: "Grand Stage",
+      tag: "Metallic 8ft Ring",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Grand Ring Stage Backdrop' in Hyderabad."
+    },
+    {
+      id: "stage-2",
+      title: "Royal Ballroom Celebration",
+      category: "stages",
+      image: imgStage2,
+      badge: "Banquet Gala",
+      tag: "Full Stage Archway",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Royal Ballroom Celebration' in Hyderabad."
+    },
+    {
+      id: "stage-3",
+      title: "Corporate Launch Pillars",
+      category: "stages",
+      image: imgStage3,
       badge: "Commercial / B2B",
-      accent: "green",
-      icon: Briefcase,
-      image: corporateImg,
-      subtitle: "Store Openings, Product Launches & Galas",
-      description: "Prestigious entrance pillars, ribbon-cutting balloon arches, and customized corporate color palettes designed for maximum brand impact.",
-      features: [
-        "Grand entrance balloon arches & pillars",
-        "Exact corporate brand color matching",
-        "High-volume durable foil & metallic decor",
-        "Fast commercial setup across IT corridors"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Corporate / Grand Opening balloon setup in Hyderabad."
+      tag: "Entrance Arches",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Corporate Launch Pillars' in Hyderabad."
     },
     {
-      id: "ring-backdrops",
-      title: "Grand Ring & Stage Backdrops",
-      categoryGroup: "family",
-      badge: "Luxury Stage",
-      accent: "saffron",
-      icon: Layers,
-      image: stageBackdropImg,
-      subtitle: "7ft-8ft Circular Metallic Frame Styling",
-      description: "Magnificent 7-8 ft metallic ring frames enveloped in thick organic balloon garlands, custom 3D acrylic signage, and warm ambient backlighting.",
-      features: [
-        "Heavy-duty 7ft/8ft metallic ring structure",
-        "Dual-density organic balloon clustering",
-        "Custom laser-cut 3D acrylic text",
-        "Professional stage backlighting & stands"
-      ],
-      whatsappMsg: "Hi Magical Balloon Decoration, I want to enquire about Grand Ring & Stage Backdrop setup in Hyderabad."
+      id: "stage-4",
+      title: "Opulent Golden Saffron Arch",
+      category: "stages",
+      image: imgStage4,
+      badge: "VIP Setup",
+      tag: "High-Density Cluster",
+      whatsappMsg: "Hi Magical Balloon Decor, I want to book 'Opulent Golden Saffron Arch' in Hyderabad."
     }
   ];
 
   const filterTabs = [
-    { label: "All Packages", value: "All" },
-    { label: "Family & Birthdays", value: "family" },
-    { label: "Romantic & Couples", value: "couples" },
-    { label: "Traditional & Haldi", value: "traditional" },
-    { label: "Corporate & B2B", value: "commercial" }
+    { label: "All Setups", value: "All" },
+    { label: "Birthday Decorations", value: "birthdays" },
+    { label: "Romantic & Anniversary", value: "couples" },
+    { label: "Kids & Baby Shower", value: "kids" },
+    { label: "Haldi & Traditional", value: "traditional" },
+    { label: "Grand Stages & Corporate", value: "stages" }
   ];
 
-  const filteredServices = activeCategory === 'All'
-    ? allServices
-    : allServices.filter(s => s.categoryGroup === activeCategory);
+  const filteredItems = activeCategory === 'All'
+    ? allItems
+    : allItems.filter(item => item.category === activeCategory);
 
   return (
-    <div className="py-12 sm:py-20 relative">
+    <div className="relative py-8 sm:py-16 overflow-hidden">
       
       {/* Ambient Lighting Gradients (Strictly NO BLUE: Indian Green & Saffron) */}
-      <div className="absolute top-0 right-1/4 w-[700px] h-[450px] bg-gradient-to-b from-[#138808]/10 via-[#FF7722]/5 to-transparent blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#138808]/5 dark:bg-[#138808]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-[#FF7722]/5 dark:bg-[#FF7722]/[0.03] rounded-full blur-[150px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-white/[0.06] border border-zinc-200/80 dark:border-white/10 text-xs font-bold uppercase tracking-wider text-[#138808] dark:text-emerald-400 shadow-sm mb-4">
+        {/* ==================== SECTION HEADER ==================== */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#138808]/10 text-[#138808] dark:text-[#22B814] text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3 border border-[#138808]/20">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Complete Event Decoration Catalog</span>
+            <span>Hyderabad's Premier Balloon Styling</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-zinc-950 dark:text-white tracking-tight leading-tight mb-4">
-            Bespoke <span className="text-[#138808]">Decoration</span> Packages
-          </h1>
-
-          <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
-            Every celebration in Hyderabad deserves a unique aesthetic. Explore our 8 signature decoration services or request a customized setup tailored to your venue and budget.
-          </p>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white tracking-tight">
+            Our Decoration Designs
+          </h2>
         </div>
 
-        {/* Mobile App-Style Touch-Scrollable Filter Tabs */}
-        <div className="flex overflow-x-auto no-scrollbar py-2 px-1 gap-2 sm:gap-3 sm:flex-wrap sm:justify-center mb-8 sm:mb-14">
+        {/* ==================== CATEGORY FILTER PILLS ==================== */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-12 no-scrollbar px-1">
           {filterTabs.map((tab) => {
             const isActive = activeCategory === tab.value;
+
             return (
               <button
                 key={tab.value}
                 onClick={() => setActiveCategory(tab.value)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer shrink-0 active:scale-95 ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#138808] to-[#1cb80e] text-white shadow-md shadow-[#138808]/25 scale-105'
-                    : 'glass-panel text-zinc-700 dark:text-zinc-300 hover:text-[#138808] hover:border-[#138808]/40'
+                    ? 'bg-[#138808] text-white shadow-md shadow-[#138808]/30 scale-105'
+                    : 'bg-white hover:bg-zinc-100 text-zinc-700 dark:bg-white/[0.06] dark:text-zinc-300 dark:hover:bg-white/10 border border-zinc-200/70 dark:border-white/10'
                 }`}
               >
                 {tab.label}
@@ -242,110 +233,190 @@ export default function Services() {
           })}
         </div>
 
-        {/* 3-Column Desktop Grid (1 col mobile, 2 col tablet, 3 col desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredServices.map((service) => {
-            const Icon = service.icon;
-            const whatsappLink = `https://wa.me/919509971603?text=${encodeURIComponent(service.whatsappMsg)}`;
+        {/* ==================== CLEAN 4-COLUMN CARD GRID (RAHARDECORS STYLE) ==================== */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
+          {filteredItems.map((item) => {
+            const whatsappUrl = `https://wa.me/919509971603?text=${encodeURIComponent(item.whatsappMsg)}`;
 
             return (
-              <GlassCard
-                key={service.id}
-                title={service.title}
-                subtitle={service.subtitle}
-                image={service.image}
-                imageAlt={service.title}
-                badge={service.badge}
-                accent={service.accent}
-                padding="p-6"
-                className="flex flex-col justify-between group"
+              <div 
+                key={item.id} 
+                className="bg-white dark:bg-[#12141a] rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-200/70 dark:border-white/10 flex flex-col justify-between group cursor-pointer"
+                onClick={() => setActiveModalItem(item)}
               >
-                <div>
-                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 font-normal">
-                    {service.description}
-                  </p>
+                {/* Portrait Aspect 4:5 Image Container */}
+                <div className="relative aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
+                    loading="lazy"
+                  />
 
-                  {/* Checklist of Features */}
-                  <div className="space-y-2.5 mb-8">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 block mb-2">
-                      Package Includes:
+                  {/* Badge */}
+                  <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10">
+                    <span className="inline-block px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/20">
+                      {item.badge}
                     </span>
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300 font-medium">
-                        <div className="p-0.5 rounded-full mt-0.5 shrink-0 bg-[#138808]/15 text-[#138808]">
-                          <Check className="w-3 h-3 stroke-[2.5]" />
-                        </div>
-                        <span className="leading-snug">{feature}</span>
-                      </div>
-                    ))}
+                  </div>
+
+                  {/* Center Hover "Quick View" Button (Just like reference screenshot!) */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center p-2">
+                    <span className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#138808] text-white text-[11px] sm:text-xs font-bold shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                      <Eye className="w-3.5 h-3.5" />
+                      Quick View
+                    </span>
                   </div>
                 </div>
 
-                {/* Bottom WhatsApp CTA Button in Premium Green */}
-                <div className="pt-4 border-t border-zinc-200/60 dark:border-white/[0.08] flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 font-medium">
-                    <Icon className="w-3.5 h-3.5 text-[#138808]" />
-                    <span>Hyderabad Wide</span>
-                  </div>
+                {/* Minimalist Details Below Image (RaharDecors Style) */}
+                <div className="mt-3 px-1 text-center sm:text-left">
+                  <h3 className="font-bold text-xs sm:text-sm md:text-base text-zinc-900 dark:text-white truncate group-hover:text-[#138808] dark:group-hover:text-[#22B814] transition-colors">
+                    {item.title}
+                  </h3>
 
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    icon={MessageCircle}
-                    className="shrink-0"
-                  >
-                    Enquire Now
-                  </Button>
+                  <div className="flex items-center justify-between mt-1 text-[11px] text-zinc-500 dark:text-zinc-400">
+                    <span className="truncate font-medium text-[#FF7722]">
+                      {item.tag}
+                    </span>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="hidden sm:inline-flex items-center gap-1 text-[#138808] font-bold hover:underline shrink-0"
+                    >
+                      <MessageCircle className="w-3 h-3 fill-current" />
+                      <span>Book</span>
+                    </a>
+                  </div>
                 </div>
-              </GlassCard>
+
+              </div>
             );
           })}
         </div>
 
-        {/* Custom Pinterest/Instagram Request Banner */}
-        <div className="mt-20 sm:mt-28">
-          <GlassCard accent="green" padding="p-8 sm:p-14" className="text-center max-w-4xl mx-auto relative overflow-hidden">
-            <div className="relative z-10">
-              <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#138808]/15 text-[#138808] dark:text-emerald-400 mb-4">
-                Have a Specific Theme in Mind?
-              </span>
+        {/* ==================== CUSTOM REFERENCE THEME BANNER ==================== */}
+        <div className="mt-14 sm:mt-20">
+          <div className="bg-white dark:bg-[#12141a] rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-zinc-200/80 dark:border-white/10 text-center max-w-3xl mx-auto shadow-sm">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#138808]/15 text-[#138808] dark:text-emerald-400 mb-3">
+              Seen on Pinterest or Instagram?
+            </span>
 
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-950 dark:text-white mb-3 tracking-tight">
-                Seen a Design on Pinterest or Instagram?
-              </h2>
+            <h3 className="text-xl sm:text-3xl font-black text-zinc-950 dark:text-white mb-2 tracking-tight">
+              Share Your Custom Reference Photo
+            </h3>
 
-              <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-                Send us your reference photo on WhatsApp. Our Hyderabad decor specialists will customize the exact color palettes, lighting, and balloon density to fit your venue.
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
+              Send us any photo on WhatsApp. Our Hyderabad decor artists will replicate the exact colors, ring structures, and lighting at your venue.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Button
+                variant="primary"
+                size="md"
+                href={BUSINESS_INFO.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                icon={MessageCircle}
+                className="text-xs sm:text-sm"
+              >
+                Share on WhatsApp
+              </Button>
+
+              <Button
+                variant="outline"
+                size="md"
+                href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                icon={Phone}
+                className="text-xs sm:text-sm"
+              >
+                Call +91 9509971603
+              </Button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ==================== QUICK VIEW LIGHTBOX MODAL ==================== */}
+      {activeModalItem && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setActiveModalItem(null)}
+        >
+          <div 
+            className="relative w-full max-w-md sm:max-w-lg bg-white dark:bg-[#12141a] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Close Button */}
+            <button
+              onClick={() => setActiveModalItem(null)}
+              className="absolute top-3 right-3 z-20 p-2 rounded-full bg-black/60 text-white hover:bg-black/90 transition-colors cursor-pointer"
+              aria-label="Close modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Modal Image */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-zinc-950">
+              <img
+                src={activeModalItem.image}
+                alt={activeModalItem.title}
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute top-3 left-3 z-10">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md text-white bg-[#138808]/90">
+                  {activeModalItem.badge}
+                </span>
+              </div>
+            </div>
+
+            {/* Modal Details & Direct Booking Action */}
+            <div className="p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg sm:text-xl font-black text-zinc-950 dark:text-white tracking-tight">
+                  {activeModalItem.title}
+                </h3>
+                <span className="text-xs font-semibold text-[#FF7722]">
+                  {activeModalItem.tag}
+                </span>
+              </div>
+
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed">
+                Full setup customized for your venue in Hyderabad. Includes metallic & chrome balloons, setup & timely teardown crew.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="flex items-center gap-2.5">
                 <Button
                   variant="primary"
-                  size="lg"
-                  href={BUSINESS_INFO.whatsappUrl}
+                  size="md"
+                  href={`https://wa.me/919509971603?text=${encodeURIComponent(`Hi Magical Balloon Decor, I want to book "${activeModalItem.title}" setup in Hyderabad.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   icon={MessageCircle}
+                  className="flex-1 justify-center text-xs sm:text-sm"
                 >
-                  Share Photo on WhatsApp
+                  Book on WhatsApp
                 </Button>
 
                 <Button
                   variant="outline"
-                  size="lg"
+                  size="md"
                   href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                  icon={Phone}
+                  className="shrink-0 text-xs sm:text-sm"
                 >
-                  Call +91 9509971603
+                  Call
                 </Button>
               </div>
             </div>
-          </GlassCard>
-        </div>
 
-      </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

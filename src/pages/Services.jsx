@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Sparkles, 
-  MessageCircle, 
   Phone, 
   Eye, 
   X, 
@@ -10,6 +9,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_INFO } from '../utils/constants';
 import Button from '../components/Button';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 // Newly added Pexels images + Curated Balloon Setups (Strictly Zero Blue)
 import imgBirthday1 from '../assets/pexels-nikitaxnikitin-14774949.jpg';
@@ -286,7 +286,7 @@ export default function Services() {
                       onClick={(e) => e.stopPropagation()}
                       className="hidden sm:inline-flex items-center gap-1 text-[#138808] font-bold hover:underline shrink-0"
                     >
-                      <MessageCircle className="w-3 h-3 fill-current" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
                       <span>Book</span>
                     </a>
                   </div>
@@ -319,7 +319,7 @@ export default function Services() {
                 href={BUSINESS_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                icon={MessageCircle}
+                icon={WhatsAppIcon}
                 className="text-xs sm:text-sm"
               >
                 Share on WhatsApp
@@ -395,7 +395,7 @@ export default function Services() {
                   href={`https://wa.me/919509971603?text=${encodeURIComponent(`Hi Magical Balloon Decor, I want to book "${activeModalItem.title}" setup in Hyderabad.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  icon={MessageCircle}
+                  icon={WhatsAppIcon}
                   className="flex-1 justify-center text-xs sm:text-sm"
                 >
                   Book on WhatsApp

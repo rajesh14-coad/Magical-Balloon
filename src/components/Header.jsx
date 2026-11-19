@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Sun, Moon, MessageCircle, Menu, X, Sparkles, Phone } from 'lucide-react';
+import { Sun, Moon, Menu, X, Sparkles, Phone } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS } from '../utils/constants';
 import { useTheme } from '../utils/theme';
 import { useNavigation } from '../utils/navigation';
 import Button from './Button';
+import WhatsAppIcon from './WhatsAppIcon';
 
 /**
  * Mobile-First Sticky Header for One-Page Smooth Scroll SPA
@@ -89,14 +90,14 @@ export default function Header() {
               )}
             </button>
 
-            {/* Indian Green WhatsApp CTA */}
+            {/* WhatsApp CTA */}
             <Button
               variant="primary"
               size="md"
               href={BUSINESS_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              icon={MessageCircle}
+              icon={WhatsAppIcon}
               className="shadow-md hover:scale-105 active:scale-95 transition-all"
             >
               Book on WhatsApp
@@ -169,7 +170,7 @@ export default function Header() {
               href={BUSINESS_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              icon={MessageCircle}
+              icon={WhatsAppIcon}
               className="w-full justify-center"
             >
               Book on WhatsApp

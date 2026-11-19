@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import TrustHighlights from './components/TrustHighlights';
 import Contact from './pages/Contact';
-import { MessageCircle } from 'lucide-react';
+import WhatsAppIcon from './components/WhatsAppIcon';
 import { BUSINESS_INFO } from './utils/constants';
 
 /**
@@ -59,15 +59,15 @@ export default function App() {
             {/* Clean Modern Footer */}
             <Footer />
 
-            {/* Desktop Floating WhatsApp Button (Hidden on Mobile because Mobile has BottomNav center button) */}
+            {/* Desktop Floating WhatsApp Button (Hidden on Mobile because Mobile has bottom action buttons) */}
             <a
               href={BUSINESS_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Direct WhatsApp Booking"
-              className="hidden md:flex fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[#138808] text-white shadow-xl hover:bg-[#16a34a] hover:scale-110 active:scale-95 transition-all duration-300 items-center justify-center shadow-[#138808]/30 cursor-pointer"
+              className="hidden md:flex fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-[#25D366] text-white shadow-xl hover:bg-[#20bd5a] hover:scale-110 active:scale-95 transition-all duration-300 items-center justify-center shadow-[#25D366]/40 cursor-pointer"
             >
-              <MessageCircle className="w-6 h-6 fill-current" />
+              <WhatsAppIcon className="w-6 h-6 fill-current" />
             </a>
 
             {/* Native Mobile App Bottom Navigation Bar */}

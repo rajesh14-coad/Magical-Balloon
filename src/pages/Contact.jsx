@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Phone, 
-  MessageCircle, 
   MapPin, 
   Clock, 
   Send, 
@@ -15,6 +14,7 @@ import {
 import { BUSINESS_INFO } from '../utils/constants';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/Button';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 /**
  * Production-Ready Contact Page
@@ -116,7 +116,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#138808] to-[#1cb80e] hover:from-[#117a07] hover:to-[#179e0c] text-white font-bold text-base flex items-center justify-center gap-3 shadow-xl shadow-[#138808]/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 animate-pulse-glow"
                 >
-                  <MessageCircle className="w-6 h-6 fill-current shrink-0" />
+                  <WhatsAppIcon className="w-6 h-6 fill-current shrink-0" />
                   <span>Chat on WhatsApp (+91 9509971603)</span>
                 </a>
               </div>

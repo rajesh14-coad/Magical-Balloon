@@ -1,7 +1,8 @@
 import React from 'react';
-import { Phone, MessageCircle, MapPin, Clock, Heart, Sparkles, ArrowUpRight } from 'lucide-react';
+import { Phone, MapPin, Clock, Heart, Sparkles, ArrowUpRight } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS } from '../utils/constants';
 import { useNavigation } from '../utils/navigation';
+import WhatsAppIcon from './WhatsAppIcon';
 
 /**
  * Premium Bespoke Footer Component
@@ -96,7 +97,7 @@ export default function Footer() {
                 className="flex items-center gap-2.5 text-sm text-zinc-700 hover:text-[#138808] dark:text-zinc-300 dark:hover:text-[#22B814] transition-colors group"
               >
                 <div className="p-2 rounded-lg bg-zinc-200/60 dark:bg-white/[0.05] group-hover:bg-[#138808]/10 transition-colors">
-                  <MessageCircle className="w-4 h-4 text-[#138808]" />
+                  <WhatsAppIcon className="w-4 h-4 text-[#138808] fill-current" />
                 </div>
                 <span className="font-medium text-xs sm:text-sm">WhatsApp Chat</span>
               </a>

@@ -8,6 +8,7 @@ import BottomNav from './components/BottomNav';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import TrustHighlights from './components/TrustHighlights';
+import FaqSection from './components/FaqSection';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -17,15 +18,68 @@ import NotFound from './pages/NotFound';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import { BUSINESS_INFO } from './utils/constants';
 
-const ROUTE_TITLES = {
-  '/': 'Magical Balloon Decoration Hyderabad | Birthday, Anniversary & Event Decor',
-  '/about': 'About Us | Magical Balloon Decoration Hyderabad',
-  '/privacy-policy': 'Privacy Policy | Magical Balloon Decoration Hyderabad',
-  '/terms': 'Terms & Conditions | Magical Balloon Decoration Hyderabad',
-  '/refund-policy': 'Cancellation & Refund Policy | Magical Balloon Decoration Hyderabad'
+const ROUTE_META = {
+  '/': {
+    title: 'Magical Balloon Decoration Hyderabad | Birthday, Anniversary & Event Decor',
+    description:
+      'Custom birthday, anniversary, baby shower, Haldi, and corporate event balloon decoration in Hyderabad. Serving Balanagar, Kukatpally, Madhapur & city-wide. Call +91 9509971603.',
+    canonical: 'https://magicalballoondecoration.com/'
+  },
+  '/services': {
+    title: 'Decoration Packages & Themes | Magical Balloon Decoration Hyderabad',
+    description:
+      'Browse birthday, anniversary, baby shower, Haldi, and corporate balloon decoration packages in Hyderabad with upfront written estimates.',
+    canonical: 'https://magicalballoondecoration.com/services'
+  },
+  '/gallery': {
+    title: 'Decoration Themes & Portfolio | Magical Balloon Decoration Hyderabad',
+    description:
+      'Explore balloon decoration themes for birthdays, anniversaries, baby showers, and grand openings across Hyderabad.',
+    canonical: 'https://magicalballoondecoration.com/gallery'
+  },
+  '/contact': {
+    title: 'Contact & Free Quote | Magical Balloon Decoration Hyderabad',
+    description:
+      'Contact Magical Balloon Decoration in Balanagar, Hyderabad (+91 9509971603) for upfront balloon decoration quotes and availability.',
+    canonical: 'https://magicalballoondecoration.com/contact'
+  },
+  '/about': {
+    title: 'About Us | Magical Balloon Decoration Hyderabad',
+    description:
+      'Learn about Magical Balloon Decoration in Balanagar, Hyderabad — our decoration team, materials, service areas, and transparent booking workflow.',
+    canonical: 'https://magicalballoondecoration.com/about'
+  },
+  '/privacy-policy': {
+    title: 'Privacy Policy | Magical Balloon Decoration Hyderabad',
+    description:
+      'Privacy Policy for Magical Balloon Decoration (magicalballoondecoration.com) explaining inquiry data handling, WhatsApp disclosure, cookies, and user rights.',
+    canonical: 'https://magicalballoondecoration.com/privacy-policy'
+  },
+  '/terms': {
+    title: 'Terms & Conditions | Magical Balloon Decoration Hyderabad',
+    description:
+      'Service Terms and Conditions for booking balloon and event decoration services with Magical Balloon Decoration in Hyderabad.',
+    canonical: 'https://magicalballoondecoration.com/terms'
+  },
+  '/refund-policy': {
+    title: 'Cancellation & Refund Policy | Magical Balloon Decoration Hyderabad',
+    description:
+      'Clear booking cancellation, rescheduling, and advance refund timelines for Magical Balloon Decoration Hyderabad.',
+    canonical: 'https://magicalballoondecoration.com/refund-policy'
+  }
 };
 
-function LandingPage() {
+function LandingPage({ focusSection }) {
+  useEffect(() => {
+    if (!focusSection || typeof document === 'undefined' || typeof window === 'undefined') return;
+    const el = document.getElementById(focusSection);
+    if (el) {
+      const headerOffset = 76;
+      const offsetPosition = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: 'auto' });
+    }
+  }, [focusSection]);
+
   return (
     <div className="space-y-12 sm:space-y-20">
       <section id="home" className="scroll-mt-20">
@@ -40,6 +94,10 @@ function LandingPage() {
         <TrustHighlights />
       </section>
 
+      <section id="faq" className="scroll-mt-20">
+        <FaqSection />
+      </section>
+
       <section id="contact" className="scroll-mt-20">
         <Contact />
       </section>
@@ -51,8 +109,18 @@ function RouteMetaSync() {
   const location = useLocation();
 
   useEffect(() => {
-    const title = ROUTE_TITLES[location.pathname] || `${BUSINESS_INFO.name} | Hyderabad`;
-    document.title = title;
+    const meta = ROUTE_META[location.pathname] || {
+      title: `${BUSINESS_INFO.name} | Hyderabad`,
+      description: BUSINESS_INFO.tagline,
+      canonical: `${BUSINESS_INFO.websiteUrl}/`
+    };
+    document.title = meta.title;
+
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute('content', meta.description);
+
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (canonicalEl) canonicalEl.setAttribute('href', meta.canonical);
   }, [location.pathname]);
 
   return null;
@@ -76,6 +144,9 @@ export default function App() {
           <main className="flex-grow pb-28 sm:pb-32 md:pb-0">
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/services" element={<LandingPage focusSection="services" />} />
+              <Route path="/gallery" element={<LandingPage focusSection="services" />} />
+              <Route path="/contact" element={<LandingPage focusSection="contact" />} />
               <Route path="/about" element={<About />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<Terms />} />

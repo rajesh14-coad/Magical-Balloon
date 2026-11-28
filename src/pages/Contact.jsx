@@ -33,6 +33,7 @@ export default function Contact() {
   });
 
   const [submitState, setSubmitState] = useState(null);
+  const [copied, setCopied] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -42,11 +43,22 @@ export default function Contact() {
     }));
   };
 
+  const handleCopySummary = async () => {
+    if (!submitState?.summary || typeof navigator === 'undefined' || !navigator.clipboard) return;
+    try {
+      await navigator.clipboard.writeText(submitState.summary);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Clipboard blocked by browser settings
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     const formattedMessage =
-      `*New Booking Inquiry - ${BUSINESS_INFO.name}*\n` +
+      `New Booking Inquiry - ${BUSINESS_INFO.name}\n` +
       `--------------------------------------\n` +
       `Name: ${formData.name.trim() || 'Not provided'}\n` +
       `Phone: ${formData.phone.trim() || 'Not provided'}\n` +
@@ -57,10 +69,16 @@ export default function Contact() {
       `Sent via ${BUSINESS_INFO.websiteUrl}`;
 
     const encodedUrl = `${BUSINESS_INFO.whatsappUrl}?text=${encodeURIComponent(formattedMessage)}`;
+    const emailHref = BUSINESS_INFO.email
+      ? `mailto:${BUSINESS_INFO.email}?subject=${encodeURIComponent(`Balloon Decor Quote Inquiry - ${formData.eventType}`)}&body=${encodeURIComponent(formattedMessage)}`
+      : '';
     const popupWindow = window.open(encodedUrl, '_blank', 'noopener,noreferrer');
 
+    setCopied(false);
     setSubmitState({
       url: encodedUrl,
+      emailHref,
+      summary: formattedMessage,
       popupBlocked: !popupWindow
     });
   };
@@ -221,7 +239,11 @@ export default function Contact() {
                   Send Your Event Details
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                  Fill in your event details below to prepare a formatted WhatsApp inquiry. Alternatively, call {BUSINESS_INFO.phone} directly without using WhatsApp.
+                  Fill in your event details below to prepare an inquiry summary. Alternatively, call {BUSINESS_INFO.phone} or email{' '}
+                  <a href={`mailto:${BUSINESS_INFO.email}`} className="text-[#138808] font-semibold underline">
+                    {BUSINESS_INFO.email}
+                  </a>{' '}
+                  directly without using WhatsApp.
                 </p>
               </div>
 
@@ -375,16 +397,19 @@ export default function Contact() {
                 </div>
 
                 {submitState && (
-                  <div className="p-4 rounded-xl bg-[#138808]/10 border border-[#138808]/30 space-y-2 text-xs text-zinc-800 dark:text-zinc-200 animate-in fade-in duration-200">
+                  <div className="p-4 rounded-xl bg-[#138808]/10 border border-[#138808]/30 space-y-2.5 text-xs text-zinc-800 dark:text-zinc-200 animate-in fade-in duration-200">
                     <div className="flex items-center gap-2 font-semibold text-[#138808] dark:text-emerald-400">
                       <CheckCircle2 className="w-4 h-4 shrink-0" />
                       <span>
                         {submitState.popupBlocked
-                          ? 'Your inquiry message is ready. Click below to open WhatsApp:'
-                          : 'Your formatted inquiry opened in WhatsApp.'}
+                          ? 'Your inquiry summary is ready below. Send via WhatsApp, copy it, or call directly:'
+                          : 'Your formatted inquiry opened in WhatsApp. Summary saved below for reference:'}
                       </span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <pre className="whitespace-pre-wrap text-[11px] p-2.5 rounded-lg bg-white/80 dark:bg-black/30 border border-zinc-200/70 dark:border-white/10 font-sans">
+                      {submitState.summary}
+                    </pre>
+                    <div className="flex flex-wrap items-center gap-2.5 pt-1">
                       <a
                         href={submitState.url}
                         target="_blank"
@@ -394,11 +419,26 @@ export default function Contact() {
                         <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
                         <span>Open WhatsApp Inquiry</span>
                       </a>
+                      <button
+                        type="button"
+                        onClick={handleCopySummary}
+                        className="px-3 py-1.5 rounded-lg bg-white dark:bg-white/10 border border-zinc-200 dark:border-white/15 font-semibold hover:border-[#138808] cursor-pointer"
+                      >
+                        {copied ? 'Copied!' : 'Copy Details'}
+                      </button>
+                      {submitState.emailHref && (
+                        <a
+                          href={submitState.emailHref}
+                          className="px-3 py-1.5 rounded-lg bg-[#138808] text-white font-semibold hover:bg-[#0f6e06]"
+                        >
+                          Send via Email
+                        </a>
+                      )}
                       <a
                         href={`tel:${BUSINESS_INFO.phoneRaw}`}
                         className="font-semibold text-[#138808] underline"
                       >
-                        Or call {BUSINESS_INFO.phone}
+                        Call {BUSINESS_INFO.phone}
                       </a>
                     </div>
                   </div>

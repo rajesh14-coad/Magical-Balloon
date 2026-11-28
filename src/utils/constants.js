@@ -12,8 +12,8 @@ export const BUSINESS_INFO = {
   // Set your legal proprietor / registered entity name matching your Google Ads billing profile when ready
   legalEntityName: "Magical Balloon Decoration",
   websiteUrl: "https://magicalballoondecoration.com",
-  // Add your active working email address here once configured on your domain (e.g. "contact@magicalballoondecoration.com")
-  email: "",
+  // Official business contact email
+  email: "contact@magicalballoondecoration.com",
   tagline: "Custom Birthday, Anniversary, Baby Shower & Event Balloon Decoration in Hyderabad",
   phone: "+91 9509971603",
   phoneRaw: "+919509971603",

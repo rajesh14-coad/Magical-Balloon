@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Sparkles, Phone } from 'lucide-react';
+import { Sun, Moon, Menu, X, Phone, FileText } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS } from '../utils/constants';
 import { useTheme } from '../utils/theme';
 import { useNavigation } from '../utils/navigation';
 import Button from './Button';
-import WhatsAppIcon from './WhatsAppIcon';
 
 /**
  * Sticky Header supporting both multi-page legal/about routes and one-page section scrolling.
@@ -36,11 +35,13 @@ export default function Header() {
             className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none text-left cursor-pointer"
             aria-label="Magical Balloon Decoration Home"
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#138808] via-white to-[#FF7722] p-[1.5px] shadow-sm group-hover:scale-105 transition-all duration-300">
-              <div className="w-full h-full bg-white dark:bg-[#0A0B0E] rounded-[9px] sm:rounded-[10px] flex items-center justify-center transition-colors">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#138808]" />
-              </div>
-            </div>
+            <img
+              src="/favicon.svg"
+              alt="Magical Balloon Decoration logo"
+              width={40}
+              height={40}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0"
+            />
 
             <div className="flex flex-col">
               <span className="text-base sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-[#138808] via-[#1db50d] to-[#FF7722] bg-clip-text text-transparent">
@@ -94,13 +95,11 @@ export default function Header() {
             <Button
               variant="primary"
               size="md"
-              href={BUSINESS_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={WhatsAppIcon}
+              onClick={() => scrollToSection('contact')}
+              icon={FileText}
               className="shadow-md hover:scale-105 active:scale-95 transition-all"
             >
-              Book on WhatsApp
+              Get Free Quote
             </Button>
           </div>
 
@@ -167,13 +166,14 @@ export default function Header() {
             <Button
               variant="primary"
               size="md"
-              href={BUSINESS_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={WhatsAppIcon}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                scrollToSection('contact');
+              }}
+              icon={FileText}
               className="w-full justify-center"
             >
-              Book on WhatsApp
+              Get Free Quote
             </Button>
             <Button
               variant="outline"

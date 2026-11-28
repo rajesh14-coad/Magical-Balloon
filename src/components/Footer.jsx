@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Mail, Sparkles, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { Phone, MapPin, Clock, Mail, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS, LEGAL_LINKS } from '../utils/constants';
 import { useNavigation } from '../utils/navigation';
 import WhatsAppIcon from './WhatsAppIcon';
@@ -26,11 +26,13 @@ export default function Footer() {
               to="/"
               className="flex items-center gap-3 group inline-flex text-left cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FF7722] via-white to-[#138808] p-[1.5px]">
-                <div className="w-full h-full bg-white dark:bg-[#0A0B0E] rounded-[9px] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-[#FF7722]" />
-                </div>
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Magical Balloon Decoration logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0"
+              />
               <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-[#FF7722] via-[#E67E22] to-[#138808] bg-clip-text text-transparent">
                 {BUSINESS_INFO.name}
               </span>

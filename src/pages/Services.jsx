@@ -235,6 +235,7 @@ export default function Services() {
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
                   loading="lazy"
+                  decoding="async"
                 />
 
                 <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10">

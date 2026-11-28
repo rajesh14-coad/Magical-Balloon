@@ -73,7 +73,7 @@ export default function PrivacyPolicy() {
               3. WhatsApp &amp; Direct Call Communication Disclosure
             </h2>
             <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-              Our website gives you the option to submit a booking inquiry via WhatsApp or call us directly at <strong>{BUSINESS_INFO.phone}</strong>. When you click a WhatsApp button or submit the WhatsApp inquiry form, your browser opens WhatsApp (a service operated by WhatsApp LLC / Meta), and messages transmitted on WhatsApp are governed by WhatsApp&rsquo;s own privacy policy. If you prefer not to use WhatsApp, you may contact us directly via phone call or submit an inquiry without opening WhatsApp.
+              Our website gives you the option to submit a booking inquiry via WhatsApp, email us at <strong>{BUSINESS_INFO.email}</strong>, or call us directly at <strong>{BUSINESS_INFO.phone}</strong>. When you click a WhatsApp button or submit a WhatsApp message, your browser opens WhatsApp (a service operated by WhatsApp LLC / Meta), and messages transmitted on WhatsApp are governed by WhatsApp&rsquo;s own privacy policy. If you prefer not to use WhatsApp, you may contact us directly via phone call or email.
             </p>
           </section>
 

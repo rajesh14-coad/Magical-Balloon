@@ -20,6 +20,30 @@ const ROUTES = [
     canonical: 'https://magicalballoondecoration.com/'
   },
   {
+    url: '/services',
+    outFile: path.join(distDir, 'services', 'index.html'),
+    title: 'Decoration Packages & Themes | Magical Balloon Decoration Hyderabad',
+    description:
+      'Browse birthday, anniversary, baby shower, Haldi, and corporate balloon decoration packages in Hyderabad with upfront written estimates.',
+    canonical: 'https://magicalballoondecoration.com/services'
+  },
+  {
+    url: '/gallery',
+    outFile: path.join(distDir, 'gallery', 'index.html'),
+    title: 'Decoration Themes & Portfolio | Magical Balloon Decoration Hyderabad',
+    description:
+      'Explore balloon decoration themes for birthdays, anniversaries, baby showers, and grand openings across Hyderabad.',
+    canonical: 'https://magicalballoondecoration.com/gallery'
+  },
+  {
+    url: '/contact',
+    outFile: path.join(distDir, 'contact', 'index.html'),
+    title: 'Contact & Free Quote | Magical Balloon Decoration Hyderabad',
+    description:
+      'Contact Magical Balloon Decoration in Balanagar, Hyderabad (+91 9509971603) for upfront balloon decoration quotes and availability.',
+    canonical: 'https://magicalballoondecoration.com/contact'
+  },
+  {
     url: '/about',
     outFile: path.join(distDir, 'about', 'index.html'),
     title: 'About Us | Magical Balloon Decoration Hyderabad',

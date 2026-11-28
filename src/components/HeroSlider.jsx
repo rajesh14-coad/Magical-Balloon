@@ -57,13 +57,15 @@ export default function HeroSlider() {
         }}
         className="hero-banner-swiper w-full h-full"
       >
-        {slides.map((slide) => (
+        {slides.map((slide, idx) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full overflow-hidden select-none bg-zinc-900">
             <img
               src={slide.image}
               alt={slide.title}
               className="absolute inset-0 w-full h-full object-cover object-center select-none"
-              loading="eager"
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
+              decoding={idx === 0 ? 'sync' : 'async'}
             />
           </SwiperSlide>
         ))}

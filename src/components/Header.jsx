@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sun, Moon, Menu, X, Sparkles, Phone } from 'lucide-react';
 import { BUSINESS_INFO, NAV_LINKS } from '../utils/constants';
 import { useTheme } from '../utils/theme';
@@ -7,31 +8,31 @@ import Button from './Button';
 import WhatsAppIcon from './WhatsAppIcon';
 
 /**
- * Mobile-First Sticky Header for One-Page Smooth Scroll SPA
- * Features:
- * - Precision smooth scroll to #home, #services, #gallery, #contact
- * - Live active tab indicator matching current scroll position
- * - Direct 1-tap call button on mobile
- * - STRICTLY ZERO BLUE
+ * Sticky Header supporting both multi-page legal/about routes and one-page section scrolling.
  */
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const { activeSection, scrollToSection } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNavClick = (id) => {
-    scrollToSection(id);
+  const handleNavClick = (link) => {
     setMobileMenuOpen(false);
+    if (link.id === 'about') {
+      navigate('/about');
+      return;
+    }
+    scrollToSection(link.id);
   };
 
   return (
     <header className="sticky top-0 z-50 w-full glass-header transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          
-          {/* Left: Brand Logo (Scrolls to top/home) */}
-          <button
-            onClick={() => handleNavClick('home')}
+          {/* Brand Logo */}
+          <Link
+            to="/"
+            onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none text-left cursor-pointer"
             aria-label="Magical Balloon Decoration Home"
           >
@@ -40,7 +41,7 @@ export default function Header() {
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#138808]" />
               </div>
             </div>
-            
+
             <div className="flex flex-col">
               <span className="text-base sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-[#138808] via-[#1db50d] to-[#FF7722] bg-clip-text text-transparent">
                 Magical Balloon
@@ -49,17 +50,18 @@ export default function Header() {
                 Hyderabad • Decor
               </span>
             </div>
-          </button>
+          </Link>
 
-          {/* Center: Desktop Navigation Links with Live Scrollspy */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-7" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
 
               return (
                 <button
                   key={link.id}
-                  onClick={() => handleNavClick(link.id)}
+                  type="button"
+                  onClick={() => handleNavClick(link)}
                   className={`relative py-1 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
                     isActive
                       ? 'text-[#138808] font-bold'
@@ -76,7 +78,6 @@ export default function Header() {
 
           {/* Right Desktop Controls */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* Theme Toggle Button */}
             <button
               type="button"
               onClick={toggleTheme}
@@ -90,7 +91,6 @@ export default function Header() {
               )}
             </button>
 
-            {/* WhatsApp CTA */}
             <Button
               variant="primary"
               size="md"
@@ -104,7 +104,7 @@ export default function Header() {
             </Button>
           </div>
 
-          {/* Right Mobile Controls: Direct 1-Tap Call + Theme Toggle + Menu */}
+          {/* Right Mobile Controls */}
           <div className="flex items-center gap-1.5 sm:hidden">
             <a
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
@@ -136,7 +136,6 @@ export default function Header() {
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -150,7 +149,8 @@ export default function Header() {
               return (
                 <button
                   key={link.id}
-                  onClick={() => handleNavClick(link.id)}
+                  type="button"
+                  onClick={() => handleNavClick(link)}
                   className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors text-left cursor-pointer ${
                     isActive
                       ? 'bg-[#138808]/15 text-[#138808] font-bold'

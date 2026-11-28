@@ -1,50 +1,51 @@
 import React from 'react';
-import { 
-  Palette, 
-  Clock, 
-  ShieldCheck 
+import { Link } from 'react-router-dom';
+import {
+  Palette,
+  Clock,
+  ShieldCheck
 } from 'lucide-react';
-import { STATS } from '../utils/constants';
+import { BOOKING_PROCESS } from '../utils/constants';
 import GlassCard from './GlassCard';
 
 /**
- * Trust & Quality Highlights Section (Crafted With Passion & Precision)
- * Positioned cleanly near the bottom of the page before Contact.
- * STRICTLY ZERO BLUE
+ * Service Standards & Transparent 4-Step Booking Workflow
  */
 export default function TrustHighlights() {
   const highlights = [
     {
       icon: Palette,
-      title: "100% Custom Designs",
-      description: "Every setup is uniquely tailored to your theme, venue aesthetics, and color preferences.",
-      accent: "green"
+      title: "Custom Venue Styling",
+      description: "Every setup is tailored to your room dimensions, backdrop layout, and colour preferences — with exact inclusions listed in your quote.",
+      accent: "green",
+      footerLabel: "Customisable Themes"
     },
     {
       icon: Clock,
-      title: "Timely Setup Guaranteed",
-      description: "Our punctual Hyderabad crew arrives well in advance to ensure flawless setup before guests arrive.",
-      accent: "saffron"
+      title: "Scheduled On-Site Setup",
+      description: "Our Balanagar-based Hyderabad team confirms your arrival window in advance so installation finishes smoothly before your event starts.",
+      accent: "saffron",
+      footerLabel: "Pre-Scheduled Slots"
     },
     {
       icon: ShieldCheck,
-      title: "Premium Biodegradable Balloons",
-      description: "We use only long-lasting metallic, chrome, and pastel latex balloons for a glossy, radiant finish.",
-      accent: "green"
+      title: "Quality Biodegradable Latex",
+      description: "We work with metallic, chrome, and pastel natural latex balloons paired with reusable metal rings, backdrop stands, and LED lights.",
+      accent: "green",
+      footerLabel: "Transparent Material List"
     }
   ];
 
   return (
     <div className="relative py-10 sm:py-16 overflow-hidden">
-      
-      {/* ==================== 1. HIGHLIGHTS: CRAFTED WITH PASSION ==================== */}
+      {/* 1. Service Quality Highlights */}
       <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 mb-12 sm:mb-16">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#FF7722] block mb-1.5">
-            Why Choose Magical Balloon
+            Our Service Standards
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
-            Crafted With Passion & Precision
+            Crafted With Care &amp; Clear Estimates
           </h2>
         </div>
 
@@ -77,7 +78,7 @@ export default function TrustHighlights() {
                 </div>
 
                 <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-zinc-200/50 dark:border-white/[0.06] w-full flex items-center justify-between text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                  <span>Guaranteed Setup Quality</span>
+                  <span>{item.footerLabel}</span>
                   <span className="text-[#138808] group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </GlassCard>
@@ -86,27 +87,49 @@ export default function TrustHighlights() {
         </div>
       </section>
 
-      {/* ==================== 2. STATS COUNTER ==================== */}
+      {/* 2. Transparent 4-Step Booking Process */}
       <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-          {STATS.map((stat, idx) => (
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10">
+          <h3 className="text-xl sm:text-3xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
+            How Booking &amp; Pricing Works
+          </h3>
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1.5">
+            Simple, clear process with written estimates and published{' '}
+            <Link to="/terms" className="text-[#138808] font-semibold underline">
+              Service Terms
+            </Link>{' '}
+            &amp;{' '}
+            <Link to="/refund-policy" className="text-[#138808] font-semibold underline">
+              Refund Policy
+            </Link>.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          {BOOKING_PROCESS.map((item, idx) => (
             <GlassCard
-              key={stat.label}
+              key={item.step}
               accent={idx % 2 === 0 ? "green" : "saffron"}
-              padding="p-4 sm:p-6"
-              className="text-center rounded-2xl sm:rounded-3xl"
+              padding="p-5 sm:p-6"
+              className="rounded-2xl sm:rounded-3xl"
             >
-              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white mb-1 tracking-tight">
-                {stat.value}
-              </div>
-              <div className="text-[10px] sm:text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                {stat.label}
-              </div>
+              <span className={`inline-block text-xs font-black tracking-widest uppercase px-2.5 py-1 rounded-lg mb-3 ${
+                idx % 2 === 0
+                  ? 'bg-[#138808]/15 text-[#138808]'
+                  : 'bg-[#FF7722]/15 text-[#FF7722]'
+              }`}>
+                Step {item.step}
+              </span>
+              <h4 className="text-base sm:text-lg font-bold text-zinc-950 dark:text-white mb-1.5">
+                {item.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
       </section>
-
     </div>
   );
 }

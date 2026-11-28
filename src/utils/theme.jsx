@@ -3,16 +3,24 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // Requirement: Default Theme is LIGHT MODE
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('magical_balloon_theme');
-      if (saved === 'dark' || saved === 'light') return saved;
-    }
-    return 'light'; // Default to light
-  });
+  // Always initialize to 'light' for deterministic SSR/hydration, then sync saved preference in useEffect
+  const [theme, setTheme] = useState('light');
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem('magical_balloon_theme');
+      if (saved === 'dark' || saved === 'light') {
+        setTheme(saved);
+      }
+    } catch {
+      // Ignore if localStorage is restricted
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
     const root = document.documentElement;
     const body = document.body;
 
@@ -29,7 +37,7 @@ export function ThemeProvider({ children }) {
     } catch {
       // Ignore if localStorage is restricted
     }
-  }, [theme]);
+  }, [theme, hydrated]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));

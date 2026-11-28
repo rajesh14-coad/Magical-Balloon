@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './utils/theme';
 import { NavigationProvider } from './utils/navigation';
 import Header from './components/Header';
@@ -9,72 +9,96 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import TrustHighlights from './components/TrustHighlights';
 import Contact from './pages/Contact';
+import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
+import RefundPolicy from './pages/RefundPolicy';
+import NotFound from './pages/NotFound';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import { BUSINESS_INFO } from './utils/constants';
 
+const ROUTE_TITLES = {
+  '/': 'Magical Balloon Decoration Hyderabad | Birthday, Anniversary & Event Decor',
+  '/about': 'About Us | Magical Balloon Decoration Hyderabad',
+  '/privacy-policy': 'Privacy Policy | Magical Balloon Decoration Hyderabad',
+  '/terms': 'Terms & Conditions | Magical Balloon Decoration Hyderabad',
+  '/refund-policy': 'Cancellation & Refund Policy | Magical Balloon Decoration Hyderabad'
+};
+
+function LandingPage() {
+  return (
+    <div className="space-y-12 sm:space-y-20">
+      <section id="home" className="scroll-mt-20">
+        <Home />
+      </section>
+
+      <section id="services" className="scroll-mt-20">
+        <Services />
+      </section>
+
+      <section id="why-us" className="scroll-mt-20">
+        <TrustHighlights />
+      </section>
+
+      <section id="contact" className="scroll-mt-20">
+        <Contact />
+      </section>
+    </div>
+  );
+}
+
+function RouteMetaSync() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const title = ROUTE_TITLES[location.pathname] || `${BUSINESS_INFO.name} | Hyderabad`;
+    document.title = title;
+  }, [location.pathname]);
+
+  return null;
+}
+
 /**
- * Root Application Component
- * Architecture:
- * - One-Page Smooth Scroll Single Page Application (SPA)
- * - Native Mobile App-like Bottom Navigation Dock (md:hidden)
- * - Sticky Glassmorphic Header & Subtle Tricolor Footer
- * - Mobile Safe Spacing (pb-24 md:pb-0)
- * - ThemeProvider (defaulting to 'light' mode with dark toggle)
- * - Live ScrollSpy & Smooth Section Scrolling
- * - STRICTLY ZERO BLUE
+ * Root Application Shell (Router is provided by main.jsx on client and entry-server.jsx for SSR pre-rendering)
  */
 export default function App() {
   return (
     <ThemeProvider>
       <NavigationProvider>
-        <BrowserRouter>
-          <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#FCFCFD] dark:bg-[#0A0B0E] text-zinc-900 dark:text-zinc-100 relative transition-colors duration-300 selection:bg-[#138808] selection:text-white flex flex-col justify-between">
-            
-            {/* Ambient Lighting Gradients (Strictly NO BLUE: Saffron & Indian Green only) */}
-            <div className="fixed top-0 left-0 w-[550px] max-w-full h-[550px] bg-[#138808]/5 dark:bg-[#138808]/[0.03] rounded-full blur-[140px] pointer-events-none -z-10 overflow-hidden" />
-            <div className="fixed bottom-0 right-0 w-[600px] max-w-full h-[600px] bg-[#FF7722]/5 dark:bg-[#FF7722]/[0.03] rounded-full blur-[160px] pointer-events-none -z-10 overflow-hidden" />
+        <RouteMetaSync />
+        <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#FCFCFD] dark:bg-[#0A0B0E] text-zinc-900 dark:text-zinc-100 relative transition-colors duration-300 selection:bg-[#138808] selection:text-white flex flex-col justify-between">
+          {/* Ambient Lighting Gradients (Saffron & Indian Green only) */}
+          <div className="fixed top-0 left-0 w-[550px] max-w-full h-[550px] bg-[#138808]/5 dark:bg-[#138808]/[0.03] rounded-full blur-[140px] pointer-events-none -z-10 overflow-hidden" />
+          <div className="fixed bottom-0 right-0 w-[600px] max-w-full h-[600px] bg-[#FF7722]/5 dark:bg-[#FF7722]/[0.03] rounded-full blur-[160px] pointer-events-none -z-10 overflow-hidden" />
 
-            {/* Sticky Header */}
-            <Header />
+          <Header />
 
-            {/* One-Page Stacking with Safe-area padding for mobile bottom nav */}
-            <main className="flex-grow pb-28 sm:pb-32 md:pb-0 space-y-12 sm:space-y-20">
-              <section id="home" className="scroll-mt-20">
-                <Home />
-              </section>
+          <main className="flex-grow pb-28 sm:pb-32 md:pb-0">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
 
-              <section id="services" className="scroll-mt-20">
-                <Services />
-              </section>
+          <Footer />
 
-              <section id="why-us">
-                <TrustHighlights />
-              </section>
+          {/* Desktop Floating WhatsApp Shortcut */}
+          <a
+            href={BUSINESS_INFO.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Inquiry"
+            className="hidden md:flex fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-[#25D366] text-white shadow-xl hover:bg-[#20bd5a] hover:scale-110 active:scale-95 transition-all duration-300 items-center justify-center shadow-[#25D366]/40 cursor-pointer"
+          >
+            <WhatsAppIcon className="w-6 h-6 fill-current" />
+          </a>
 
-              <section id="contact" className="scroll-mt-20">
-                <Contact />
-              </section>
-            </main>
-
-            {/* Clean Modern Footer */}
-            <Footer />
-
-            {/* Desktop Floating WhatsApp Button (Hidden on Mobile because Mobile has bottom action buttons) */}
-            <a
-              href={BUSINESS_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Direct WhatsApp Booking"
-              className="hidden md:flex fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-[#25D366] text-white shadow-xl hover:bg-[#20bd5a] hover:scale-110 active:scale-95 transition-all duration-300 items-center justify-center shadow-[#25D366]/40 cursor-pointer"
-            >
-              <WhatsAppIcon className="w-6 h-6 fill-current" />
-            </a>
-
-            {/* Native Mobile App Bottom Navigation Bar */}
-            <BottomNav />
-
-          </div>
-        </BrowserRouter>
+          <BottomNav />
+        </div>
       </NavigationProvider>
     </ThemeProvider>
   );

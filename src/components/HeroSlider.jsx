@@ -8,38 +8,30 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// Web-Optimized Lightweight Balloon Decoration Images (Strictly Zero Blue)
+// Verified Balloon Decoration Images
 import slideHero from '../assets/hero-balloon.jpg';
-import slideBirthday from '../assets/birthday-balloon.jpg';
+import slideHaldi from '../assets/haldi-decor.jpg';
 import slideAnniversary from '../assets/anniversary-balloon.jpg';
-import slideStage from '../assets/pexels-rebornfilmes-36704177.jpg';
-import slideHaldi from '../assets/haldi-balloon.jpg';
+import slideCorporate from '../assets/corporate-opening-decor.jpg';
+import slidePastel from '../assets/pexels-mlkbnl-10651684.jpg';
 
 /**
- * Pure Visual Clean Hero Banner Carousel (Zero Text Overlays)
- * Features:
- * - 100% Clean full-bleed balloon decoration photos without text, badges, or buttons
- * - Proportional Height: h-[220px] on mobile, h-[320px] on tablet, h-[380px] on desktop
- * - Glitch-free smooth auto-slider
- * - Subtle navigation arrows & pagination dots
- * - STRICTLY ZERO BLUE
+ * Pure Visual Hero Banner Carousel
  */
 export default function HeroSlider() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   const slides = [
-    { id: 1, image: slideHero, title: "Opulent Golden Saffron Arch" },
-    { id: 2, image: slideBirthday, title: "Grand Birthday Ring Decor" },
-    { id: 3, image: slideAnniversary, title: "Romantic Candlelight Cabana" },
-    { id: 4, image: slideStage, title: "Royal Stage Backdrop" },
-    { id: 5, image: slideHaldi, title: "Traditional Festive Haldi Decor" }
+    { id: 1, image: slideHero, title: "Grand Banquet Entrance Balloon Arch in Hyderabad" },
+    { id: 2, image: slideHaldi, title: "Traditional Haldi and Mehendi Balloon & Marigold Backdrop" },
+    { id: 3, image: slideAnniversary, title: "Crimson and Silver Heart Balloon Arch for Anniversaries" },
+    { id: 4, image: slideCorporate, title: "Storefront and Office Grand Opening Balloon Entrance Arch" },
+    { id: 5, image: slidePastel, title: "Pastel Sage and Peach Organic Balloon Arch Setup" }
   ];
 
   return (
     <div className="relative w-full h-[220px] sm:h-[320px] lg:h-[380px] overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-900 group">
-      
-      {/* -------------------- MAIN SWIPER BANNER -------------------- */}
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         loop={true}
@@ -53,19 +45,20 @@ export default function HeroSlider() {
           clickable: true,
           dynamicBullets: true
         }}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current
-        }}
-        onBeforeInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
+        navigation={true}
+        onInit={(swiper) => {
+          if (prevRef.current && nextRef.current) {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.destroy();
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }
         }}
         className="hero-banner-swiper w-full h-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full overflow-hidden select-none bg-zinc-900">
-            {/* 100% Full-bleed Pure Visual Image - Zero Text / Badges */}
             <img
               src={slide.image}
               alt={slide.title}
@@ -76,7 +69,6 @@ export default function HeroSlider() {
         ))}
       </Swiper>
 
-      {/* Navigation Arrows (Hidden on Mobile) */}
       <button
         ref={prevRef}
         type="button"
@@ -94,7 +86,6 @@ export default function HeroSlider() {
       >
         <ChevronRight className="w-5 h-5" />
       </button>
-
     </div>
   );
 }

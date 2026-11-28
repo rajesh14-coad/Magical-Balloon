@@ -1,41 +1,71 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NavigationContext = createContext();
 
 /**
- * One-Page Smooth Scroll Navigation Provider
- * Features:
- * - Live scroll-spy detecting which section is currently on screen
- * - Precision smooth scrolling taking the sticky header offset into account
- * - Synchronization between Header, BottomNav, and in-page CTA buttons
+ * Navigation Provider supporting both one-page smooth section scrolling on `/`
+ * and multi-page routes (`/about`, `/privacy-policy`, `/terms`, `/refund-policy`).
  */
 export function NavigationProvider({ children }) {
-  const [activeSection, setActiveSection] = useState('home');
+  const [scrollSection, setScrollSection] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const scrollToSection = (id) => {
-    setActiveSection(id);
+  const activeSection =
+    location.pathname !== '/' ? location.pathname.replace('/', '') : scrollSection;
+
+  const performScroll = useCallback((id) => {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 72;
+      const headerOffset = 76;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
-  };
+  }, []);
+
+  const scrollToSection = useCallback(
+    (id) => {
+      setScrollSection(id);
+      if (location.pathname !== '/') {
+        navigate(`/#${id}`);
+        setTimeout(() => performScroll(id), 80);
+      } else {
+        performScroll(id);
+      }
+    },
+    [location.pathname, navigate, performScroll]
+  );
 
   useEffect(() => {
+    if (location.pathname !== '/') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
+    }
+
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      setTimeout(() => performScroll(targetId), 80);
+    }
+  }, [location.pathname, location.hash, performScroll]);
+
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+
     const handleScroll = () => {
-      const sections = ['home', 'services', 'contact'];
-      const scrollPosition = window.scrollY + 140;
+      const sections = ['home', 'services', 'why-us', 'contact'];
+      const scrollPosition = window.scrollY + 150;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
+          setScrollSection(sections[i]);
           break;
         }
       }
@@ -43,7 +73,7 @@ export function NavigationProvider({ children }) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   return (
     <NavigationContext.Provider value={{ activeSection, scrollToSection }}>
